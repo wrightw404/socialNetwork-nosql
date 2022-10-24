@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.6.7"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "socialnetwork-nosql",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wrightw404/socialNetwork-nosql.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wrightw404/socialNetwork-nosql/issues"
+  },
+  "homepage": "https://github.com/wrightw404/socialNetwork-nosql#readme",
+  "description": ""
+}
