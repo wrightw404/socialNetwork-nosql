@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User } = require('../models');
 
 module.exports = {
 //crud functions
@@ -10,14 +10,15 @@ module.exports = {
     },
 
     createUser(req, res) {
-        User.create(req, body)
-        .then((user) => res.json(user))
-        .catch((err) => {
+        User.create(req.body).then((userData) => {
+            res.json(userData)
+        }).catch((err) => {
             console.log(err);
             return res.status(500).json(err)
         });
+    
     },
-
+    
 
 
 
