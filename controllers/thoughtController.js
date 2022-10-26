@@ -92,22 +92,21 @@ module.exports = {
         }
     },
 
-    async deleteReaction (req, res) {
-        try{
-            const thoughtData = await Thought.findOneAndDelete(
-                { _id: req.params.thoughtId },
-                { $pull: { reactions: { reactionId: req.params.reactionId} }},
-                { runValidators: true, new: true },
-                );
-            if(!thoughtData) {
-                 return res.status(404).json({ message: 'No user with this id!' })
-            }
-                res.status(200).json(thoughtData)
-
-        } catch(err) {
-            res.status(400).json(err);
-        }
-    },
+    deleteReaction(req, res) {
+        Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $pull: { reactions: { reactionId: req.params.reactionId } } },
+          { runValidators: true, new: true }
+        )
+          .then((thought) =>
+            !thought
+              ? res
+                  .status(404)
+                  .json({ message: 'No thought found with that ID :(' })
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
 
 
 
