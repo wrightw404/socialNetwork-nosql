@@ -30,20 +30,42 @@ module.exports = {
         .select('-__v')
         .then((thought) =>
         !thought
-          ? res.status(404).json({ message: 'cannot find that user' })
+          ? res.status(404).json({ message: 'cannot find that thought' })
           : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
 
     },
 
-    async updateThought (req, res) {
-        try{
+    updateThought(req, res) {
+        Thought.findOneAndUpdate(
+          { _id: req.params.thoughtId },
+          { $set: req.body },
+          { runValidators: true, new: true}
+        )
+          .then((thought) =>
+            !thought
+              ? res.status(404).json({ message: 'No thought with this id!' })
+              : res.json(thought)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
 
-        } catch(err) {
-            res.status(400).json(err);
-        }
-    },
+    // async updateThought (req, res) {
+    //     try{
+    //         const thoughtData = Thought.findOneAndUpdate(
+    //             { _id: req.params.thoughtId },
+    //             { $set: req.body},
+    //             { runValidators: true, new: true},
+    //         );
+    //         if(!thoughtData) {
+    //             return res.status(404).json({ message: 'cannot find that thought' })
+    //         } 
+    //         res.json(thoughtData);
+    //     } catch(err) {
+    //         res.status(400).json(err);
+    //     }
+    // },
 
     async deleteThought (req, res) {
         try{

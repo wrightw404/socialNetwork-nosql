@@ -6,7 +6,7 @@ const { getThoughts, createThoughts, getSingleThought, updateThought, deleteThou
 router.route('/').get(getThoughts).post(createThoughts);
 
 // api/thoughts/:thoughtsId
-router.route('/:thoughtId').get(getSingleThought).post(updateThought).delete(deleteThought);
+router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(deleteThought);
 
 
 // neeed to import createReaction 
