@@ -8,22 +8,6 @@ module.exports = {
             .catch((err) => res.status(500).json(err))
     },
 
-    // createThoughts(req, res) {
-    //     Thought.create(req.body).then((thought) => {
-    //     User.findByIdAndUpdate(
-    //         { _id: req.body.userId },
-    //         { $push: { thoughts: thought._id }},
-    //         { new: true})
-    //     }).then((thought) =>
-    //         !user
-    //             ? res.status(404).json({ message: 'No thought with that ID' })
-    //             : res.json(thought)
-    //     ).catch((err) => {
-    //         console.log(err);
-    //         return res.status(500).json(err)
-    //     });
-    // },
-
     async createThoughts (req, res) {
         try {
             const thoughtData = await Thought.create(req.body)
@@ -39,7 +23,53 @@ module.exports = {
         } catch (err) {
             res.status(400).json(err);
         }
-    }
+    },
+
+    getSingleThought(req, res) {
+        Thought.findOne({ _id: req.params.thoughtId })
+        .select('-__v')
+        .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'cannot find that user' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+
+    },
+
+    async updateThought (req, res) {
+        try{
+
+        } catch(err) {
+            res.status(400).json(err);
+        }
+    },
+
+    async deleteThought (req, res) {
+        try{
+
+        } catch(err) {
+            res.status(400).json(err);
+        }
+    },
+
+    async createReaction (req, res) {
+        try{
+
+        } catch(err) {
+            res.status(400).json(err);
+        }
+    },
+
+    async deleteReaction (req, res) {
+        try{
+
+        } catch(err) {
+            res.status(400).json(err);
+        }
+    },
+
+
 
  
 
